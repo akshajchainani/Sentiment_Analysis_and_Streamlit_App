@@ -1,4 +1,4 @@
-from keras import backend as K
+from tensorflow.compat.v1.keras import backend as K # fix the error 
 from tensorflow.keras.models import Model, load_model
 import streamlit as st
 import nltk
@@ -41,7 +41,7 @@ def text_cleaning(line_from_column):
     words = ' '.join(words)
     return text
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource # to cache the model
 def Load_model():
     model = load_model(MODEL_PATH)
     model.summary() # included to make it visible when model is reloaded
